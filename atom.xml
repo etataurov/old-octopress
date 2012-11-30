@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://etataurov.github.com/atom.xml" rel="self"/>
   <link href="http://etataurov.github.com/"/>
-  <updated>2012-11-30T15:37:51+06:00</updated>
+  <updated>2012-11-30T17:14:40+06:00</updated>
   <id>http://etataurov.github.com/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Git SVN]]></title>
+    <link href="http://etataurov.github.com/blog/2012/11/30/git-svn/"/>
+    <updated>2012-11-30T15:49:00+06:00</updated>
+    <id>http://etataurov.github.com/blog/2012/11/30/git-svn</id>
+    <content type="html"><![CDATA[<p>До работы в NAUMEN гитом я, можно сказать, не пользовался, svn-ом тем более. Со временем почувствовал уверенность в работе с гитом, уже легко делал коммиты, ребэйзы, мерджи. С svn-ом тоже пришлось столкнуться, так как некоторые вещи лежат в svn и переносить на git планов нет.<br/>
+Но была найдена удобная утилита git-svn, которая позволяля гитовскими командами работать с svn репозиториями. Конечно с удаленными ветками работать, просто как в гите нельзя, но вот локальные ветки - самые обычные как в гите.<br/>
+Одна небольшая проблема только в том, что svn, как я понимаю, не дружит с нелинейной историей, а я часто работаю одновременно в различных локальных ветках, а главная ветка в это время тоже обновляется. В документации git-svn не советуют пользоваться merge, а советуют сделать патчи для каждого коммита. И в таком случае если захочется смержить ветку с какой-то новой фичей с мастером, то необходимо сделать<br/>
+<strong>Добавить все изменения из мастера в текущую ветку</strong><br/>
+<code>git rebase master</code><br/>
+<strong>Сформировать патчи для всех коммитов, которых нет в мастере</strong><br/>
+<code>git format-patch master</code><br/>
+<strong>Перейти в master</strong><br/>
+<code>git checkout master</code><br/>
+<strong>Применить нужные патчи</strong><br/>
+Раньше я делал это вручную, т.е. для каждого патча делал команду<br/>
+<code>git apply filename.patch</code><br/>
+При этом все изменения не коммитятся, но становятся в состояние staged for commit и потом надо вручную коммитить.<br/>
+Можно воспользоваться командой<br/>
+<code>git am filename.patch</code><br/>
+Но при этом дата коммита останется той, что была у коммита из которого сформирован это патч, что для линейной истории, которая нам нужна, совсем не хорошо.<br/>
+<code>git am filename.patch  --ignore-date</code><br/>
+Такая команда позвонил сразу коммитит изменения патча и игнорирует дату патча, ставит текущую дату.<br/>
+С помощью следующей команды можно применить все патчи из текущей папки с игнорированием ошибок пробелов и с игнорированием даты<br/>
+<code>git am *.patch  --ignore-date --ignore-whitespace --ignore-space-change</code></p>
+
+<hr />
+
+<p>Вот такой первый пост.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[My First Post]]></title>
